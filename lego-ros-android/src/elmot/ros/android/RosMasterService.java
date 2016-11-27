@@ -72,9 +72,14 @@ public class RosMasterService extends Service {
                         }
                     } else msgId = R.string.master_started;
                     String startedMessage = getString(msgId);
-                    Notification notification = new Notification(R.drawable.ic_ros_org, startedMessage, System.currentTimeMillis());
+                    Notification notification = new Notification.Builder(RosMasterService.this)
+                            .setSmallIcon(R.drawable.ic_ros_org)
+                            .setTicker(startedMessage)
+                            .setWhen(System.currentTimeMillis())
+                            .setContentTitle(startedMessage)
+                            .setContentText(getString(R.string.cick_to_stop))
+                            .build();
                     PendingIntent pendingIntent = PendingIntent.getActivity(RosMasterService.this, 0, new Intent(RosMasterService.this, RosMasterClosureActivity.class), Intent.FLAG_ACTIVITY_NEW_TASK);
-                    notification.setLatestEventInfo(RosMasterService.this, startedMessage, getString(R.string.cick_to_stop), pendingIntent);
                     startForeground(R.drawable.ic_ros_org, notification);
                 }
             }.start();

@@ -53,7 +53,7 @@ public class LegoRosActivity extends Activity {
         CameraPreview cameraPreview = CameraPreview.init(cameraView, Settings.cameraFacing(this));
         activityNode = new ActivityNode(cameraPreview);
         String host = Settings.ownIpAddress(this);
-        NodeConfiguration nodeConfiguration = NodeConfiguration.newPublic(host);
+        NodeConfiguration nodeConfiguration = NodeConfiguration.newPublic(host, Settings.masterUri(this));
         final NodeMainExecutor nodeMainExecutor = DefaultNodeMainExecutor.newDefault();
         nodeMainExecutor.execute(activityNode, nodeConfiguration);
         ((Chronometer) findViewById(R.id.chronometer)).start();
@@ -188,7 +188,8 @@ public class LegoRosActivity extends Activity {
 
 
         public void stopNode() {
-            scheduled.cancel(true);
+            if (scheduled != null)
+                scheduled.cancel(true);
             connectedNode.shutdown();
             cameraPreview.release();
         }

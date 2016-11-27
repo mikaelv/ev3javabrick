@@ -1,7 +1,7 @@
 package elmot.javabrick.ev3.net;
 
 import elmot.javabrick.ev3.EV3;
-import jdk.nashorn.internal.ir.annotations.Ignore;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;

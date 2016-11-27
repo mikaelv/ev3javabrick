@@ -159,11 +159,11 @@ public class Ev3Node extends AbstractNodeMain {
 
                 Odometry odometry = odometryPublisher.newMessage();
                 setupHeader(odometry.getHeader(), seq);
-                odometry.setChildFrameId("center");
+                odometry.setChildFrameId("base_link");
 
                 TransformStamped tfs = tfPublisher.newMessage();
                 setupHeader(tfs.getHeader(), seq);
-                tfs.setChildFrameId("center");
+                tfs.setChildFrameId("base_link");
 
                 long tachoL = brick.MOTOR.getTacho(MotorFactory.MOTOR.B);
                 long tachoR = brick.MOTOR.getTacho(MotorFactory.MOTOR.C);
@@ -178,7 +178,7 @@ public class Ev3Node extends AbstractNodeMain {
 
         private void setupHeader(Header header, int seq) {
             header.setSeq(seq);
-            header.setFrameId("cat");
+            header.setFrameId("odom");
             header.setStamp(connectedNode.getCurrentTime());
         }
     }

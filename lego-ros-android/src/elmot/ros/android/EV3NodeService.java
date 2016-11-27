@@ -6,14 +6,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
+import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.os.IBinder;
+import android.util.Log;
 import elmot.javabrick.ev3.android.usb.EV3UsbAndroid;
 import elmot.ros.ev3.Ev3Node;
 import org.ros.namespace.GraphName;
 import org.ros.node.DefaultNodeMainExecutor;
 import org.ros.node.NodeConfiguration;
 import org.ros.node.NodeMainExecutor;
+
+import java.net.URI;
 
 /**
  * @author elmot
@@ -48,12 +52,18 @@ public class EV3NodeService extends Service {
         UsbManager usbManager = (UsbManager) getSystemService(USB_SERVICE);
         UsbDevice device = EV3UsbAndroid.findDevice(usbManager);
         if (device != null) {
-            Notification notification = new Notification(R.drawable.ic_ev3_logo, "EV3 ROS Node", System.currentTimeMillis());
-            notification.setLatestEventInfo(this, "EV3 ROS Node", "Started", null);
+            Notification notification = new Notification.Builder(this)
+                    .setSmallIcon(R.drawable.ic_ev3_logo)
+                    .setTicker("EV3 ROS Node")
+                    .setWhen(System.currentTimeMillis())
+                    .setContentTitle("EV3 ROS Node")
+                    .setContentText("Started")
+                    .build();
             startForeground(R.drawable.ic_ev3_logo, notification);
             ev3Node = new Ev3Node(new EV3UsbAndroid(usbManager),Settings.NODE_NAME.join("usb"),
                     GraphName.of(Settings.namespace(this)),Settings.SAMPLING_LOOP_MS, Settings.wheelRadius(this), Settings.wheelDist(this));
-            NodeConfiguration nodeConfiguration = NodeConfiguration.newPublic(Settings.ownIpAddress(this));
+
+            NodeConfiguration nodeConfiguration = NodeConfiguration.newPublic(Settings.ownIpAddress(this), Settings.masterUri(this));
             NodeMainExecutor nodeMainExecutor = DefaultNodeMainExecutor.newDefault();
             nodeMainExecutor.execute(ev3Node, nodeConfiguration);
         } else {

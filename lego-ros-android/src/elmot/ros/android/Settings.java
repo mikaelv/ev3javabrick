@@ -3,11 +3,13 @@ package elmot.ros.android;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import org.ros.namespace.GraphName;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.net.URI;
 import java.util.Enumeration;
 
 /**
@@ -55,6 +57,17 @@ public class Settings {
         boolean localMaster = needLocalMaster(context, preferences);
         if (localMaster) return "http://" + ownIpAddress(context) + ":11311/";
         return getPreferences(context).getString(context.getString(R.string.ext_master_url), context.getString(R.string.def_ext_master_url));
+    }
+
+    public static URI masterUri(Context context) {
+        URI masterUri;
+        String settingsUri = masterUriAddress(context);
+        try {
+            masterUri = new URI(settingsUri); // TODO what are the android best practices for exceptions ?
+        } catch (Exception e) {
+            throw new RuntimeException("Invalid master URI: "+settingsUri, e) ;
+        }
+        return masterUri;
     }
 
     private static boolean needLocalMaster(Context context, SharedPreferences preferences) {
