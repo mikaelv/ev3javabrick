@@ -1,0 +1,1 @@
+include 'lego-ros-android', 'ev3-net', 'ev3-usb-android', 'ev3-common', 'ros-ev3-node'
