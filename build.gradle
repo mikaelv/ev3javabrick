@@ -160,7 +160,4 @@ project('lego-ros-android') {
 
 }
 
-configure(subprojects.findAll {it.name != 'alego-ros-android'}) {
-    apply plugin: 'com.android.library'
-}
 
