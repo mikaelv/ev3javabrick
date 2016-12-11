@@ -18,3 +18,5 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+#-dontwarn org.usb4java.**
+-keep,includedescriptorclasses class org.usb4java.LibUsb { public *; }

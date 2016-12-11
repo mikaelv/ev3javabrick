@@ -1,7 +1,8 @@
 package elmot.javabrick.ev3.impl;
 
 import elmot.javabrick.ev3.EV3;
-import android.hardware.usb.*;
+
+import javax.usb.*;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

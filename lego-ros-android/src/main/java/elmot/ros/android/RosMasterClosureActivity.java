@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import org.apache.commons.logging.LogFactory;
 
 import java.util.logging.LogManager;
 

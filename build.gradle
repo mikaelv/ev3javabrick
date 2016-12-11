@@ -21,7 +21,7 @@ buildscript {
         maven {
             url 'https://services.gradle.org/distributions/gradle-3.2.1-all.zip'
         }
-    }
+   }
 
     /**
      * The dependencies {} block configures the dependencies Gradle needs to use
@@ -47,13 +47,17 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
-    }
+        maven {
+            url 'https://github.com/rosjava/rosjava_mvn_repo/raw/master/'
+        }
+     }
 }
 
 project('lego-ros-android') {
     apply plugin: 'com.android.application'
 
     android {
+        useLibrary 'org.apache.http.legacy' // in order to use org.apache.http
         /**
          * compileSdkVersion specifies the Android API level Gradle should use to
          * compile your app. This means your app can use the API features included in
@@ -88,7 +92,7 @@ project('lego-ros-android') {
             minSdkVersion 15
 
             // Specifies the API level used to test the app.
-            targetSdkVersion 23
+            targetSdkVersion 15
 
             // Defines the version number of your app.
             versionCode 1

@@ -29,8 +29,9 @@ public class EV3Net extends EV3 {
         if (socketChannel != null) return;
         socketChannel = SocketChannel.open();
         socketChannel.connect(new InetSocketAddress(address, port));
-        socketChannel.setOption(StandardSocketOptions.SO_KEEPALIVE,true);
-        socketChannel.setOption(StandardSocketOptions.TCP_NODELAY, true);
+
+        socketChannel.socket().setKeepAlive(true);
+        socketChannel.socket().setTcpNoDelay(true);
         socketChannel.configureBlocking(true);
         String initMsg = String.format("GET /target?sn=%s VTMP1.0\r\nProtocol: EV3", serial);
         ByteBuffer byteBuffer = ByteBuffer.allocate(initMsg.length());

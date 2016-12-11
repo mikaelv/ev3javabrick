@@ -2,7 +2,7 @@ package elmot.javabrick.ev3;
 
 import elmot.javabrick.ev3.impl.EV3Usb;
 
-import android.hardware.usb.*;
+import javax.usb.*;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;

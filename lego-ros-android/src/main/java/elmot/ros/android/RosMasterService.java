@@ -10,7 +10,6 @@ import android.net.wifi.WifiManager;
 import android.os.IBinder;
 import android.util.Log;
 import elmot.ros.web.Server;
-import org.apache.commons.logging.LogFactory;
 import org.ros.RosCore;
 
 import java.io.IOException;
@@ -38,7 +37,6 @@ public class RosMasterService extends Service {
     public void onCreate() {
         super.onCreate();
         String logName = Settings.NODE_NAME.toString();
-        LogFactory.getLog(logName);
         LogManager logManager = LogManager.getLogManager();
         Logger logger = logManager.getLogger(logName);
         logger.setLevel(Level.ALL);

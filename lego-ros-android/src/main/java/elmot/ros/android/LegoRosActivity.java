@@ -17,7 +17,6 @@ import android.view.SurfaceView;
 import android.widget.Chronometer;
 import android.widget.TextView;
 import elmot.ros.android.hardware.CameraPreview;
-import org.jboss.netty.buffer.LittleEndianHeapChannelBuffer;
 import org.ros.message.MessageListener;
 import org.ros.namespace.GraphName;
 import org.ros.node.*;
@@ -175,7 +174,8 @@ public class LegoRosActivity extends Activity {
                     header.setFrameId("SmartPhoneCamera");
                     header.setSeq(seq++);
                     msg.setFormat("JPEG");
-                    msg.setData(new LittleEndianHeapChannelBuffer(cameraImage));
+                    // TODO: find an alternative to netty channel buffer
+                    //msg.setData(new LittleEndianHeapChannelBuffer(cameraImage));
                     cameraPublisher.publish(msg);
                     connectedNode.getLog().debug("Image #" + msg.getHeader().getSeq());
                 } else {

@@ -1,21 +1,40 @@
-
+// Does not seem to work:
+//configurations.compile.transitive = false
 dependencies {
-    compile 'com.android.support:appcompat-v7:23.0.1'
-//    compile 'org.ros:rosjava:0.1.6'
-    compile fileTree(dir: 'lib', include: ['*.jar'])
-    compile 'com.google.code.gson:gson:2.2'
- }
+//    compile ('com.android.support:appcompat-v7:j3.0.1')
+    compile ('org.usb4java:usb4java-javax:1.2.0') { transitive = false }// TODO is it possible to use android.hardware.usb instead ?
+    compile ('org.usb4java:usb4java:1.2.0') { transitive = false }
+    compile ('org.usb4java:libusb4java:1.2.0') { transitive = false }
+    compile ('javax.usb:usb-api:1.0.2') { transitive = false }
+    compile ('com.google.code.gson:gson:2.2') { transitive = false }
+    compile ('org.ros.rosjava_core:rosjava:0.2.1') { transitive = false }
+    compile ('org.ros.rosjava_messages:std_msgs:0.5.8') { transitive = false }
+    compile ('org.ros.rosjava_messages:rosgraph_msgs:1.9.50') { transitive = false }
+    compile ('org.ros.rosjava_messages:sensor_msgs:1.10.2') { transitive = false }
+    compile ('org.ros.rosjava_messages:geometry_msgs:1.10.2') { transitive = false }
+    compile ('org.ros.rosjava_messages:nav_msgs:1.10.2') { transitive = false }
+    compile ('org.ros.rosjava_bootstrap:message_generation:0.1.22') { transitive = false }
+    compile ('org.ros.rosjava_core:rosjava_geometry:0.1.6') { transitive = false }
+//    compile ('org.apache.commons:com.springsource.org.apache.commons.logging:1.1.1') { transitive = false }
+//    compile ('org.apache.commons:com.springsource.org.apache.commons.httpclient:3.1.0') { transitive = false }
 
+//    compile ('io.netty:netty:3.5.2.Final') { transitive = false }
+
+    
+ }
 /*
+Might have to keep these or add deps:
 /home/ubuntu/ev3javabrick/lego-ros-android/libs/apache_xmlrpc_client-0.1.6.jar
 /home/ubuntu/ev3javabrick/lego-ros-android/libs/apache_xmlrpc_common-0.1.6.jar
 /home/ubuntu/ev3javabrick/lego-ros-android/libs/apache_xmlrpc_server-0.1.6.jar
-/home/ubuntu/ev3javabrick/lego-ros-android/libs/com.springsource.org.apache.commons.httpclient-3.1.0.jar
-/home/ubuntu/ev3javabrick/lego-ros-android/libs/com.springsource.org.apache.commons.logging-1.1.1.jar
 /home/ubuntu/ev3javabrick/lego-ros-android/libs/commons_codec-1.2.jar
 /home/ubuntu/ev3javabrick/lego-ros-android/libs/commons_pool-1.6.jar
-/home/ubuntu/ev3javabrick/lego-ros-android/libs/geometry_msgs-1.10.2.jar
 /home/ubuntu/ev3javabrick/lego-ros-android/libs/guava-12.0.jar
+
+These ones are covered by dependencies:
+/home/ubuntu/ev3javabrick/lego-ros-android/libs/com.springsource.org.apache.commons.httpclient-3.1.0.jar
+/home/ubuntu/ev3javabrick/lego-ros-android/libs/geometry_msgs-1.10.2.jar
+/home/ubuntu/ev3javabrick/lego-ros-android/libs/com.springsource.org.apache.commons.logging-1.1.1.jar
 /home/ubuntu/ev3javabrick/lego-ros-android/libs/message_generation-0.1.22.jar
 /home/ubuntu/ev3javabrick/lego-ros-android/libs/nav_msgs-1.10.2.jar
 /home/ubuntu/ev3javabrick/lego-ros-android/libs/netty-3.5.2.Final.jar
