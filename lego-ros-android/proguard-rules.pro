@@ -20,3 +20,45 @@
 #}
 #-dontwarn org.usb4java.**
 -keep,includedescriptorclasses class org.usb4java.LibUsb { public *; }
+
+#-dontwarn com.google.json.internal.UnsafeAllocator
+-dontnote com.google.json.internal.UnsafeAllocator 
+-dontnote com.google.common.cache.Striped64*
+-dontnote com.google.gson.internal.UnsafeAllocator
+-dontnote sun.misc.Unsafe
+
+-dontwarn com.google.common.cache.Striped64*
+
+-dontwarn com.google.common.primitives.UnsignedBytes*
+-dontwarn com.google.common.reflect.Invokable*
+-dontnote com.google.common.reflect.Invokable*
+-dontwarn org.apache.xmlrpc.webserver.*Servlet*
+-dontwarn org.apache.xmlrpc.jaxb.**
+-dontnote org.apache.xmlrpc.metadata.Util
+
+-dontnote javax.usb.UsbHostManager
+-dontnote org.ros.internal.message.definition.MessageDefinitionReflectionProvider
+-dontwarn org.ros.internal.system.Process
+-dontwarn org.xbill.DNS.spi.**
+
+-dontnote org.jboss.netty.**
+# http://stackoverflow.com/questions/9730097/proguard-and-netty-on-android
+# Get rid of warnings about unreachable but unused classes referred to by Netty
+-dontwarn org.jboss.netty.**
+
+# Needed by commons logging
+#-keep class org.apache.commons.logging.* {*;}
+
+
+#Some Factory that seemed to be pruned
+#-keep class java.util.concurrent.atomic.AtomicReferenceFieldUpdater {*;}
+#-keep class java.util.concurrent.atomic.AtomicReferenceFieldUpdaterImpl{*;}
+
+#Some important internal fields that where removed     
+-keep class org.jboss.netty.channel.DefaultChannelPipeline{volatile <fields>;}
+
+#A Factory which has a static factory implementation selector which is pruned
+-keep class org.jboss.netty.util.internal.QueueFactory{static <fields>;}
+
+#Some fields whose names need to be maintained because they are accessed using inflection
+-keepclassmembernames class org.jboss.netty.util.internal.**{*;}

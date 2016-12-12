@@ -1,5 +1,5 @@
 package elmot.ros.testmaster;
-
+/*
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.ros.internal.node.topic.PublisherIdentifier;
 import org.ros.message.MessageListener;
@@ -104,4 +104,4 @@ public class ImageViewSubscription extends AbstractNodeMain implements MessageLi
     @Override
     public void onMasterUnregistrationFailure(Subscriber<CompressedImage> registrant) {
     }
-}
+}*/

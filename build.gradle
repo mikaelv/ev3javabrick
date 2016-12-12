@@ -46,6 +46,7 @@ buildscript {
 
 allprojects {
     repositories {
+	mavenLocal() // For the recompiled xmlrpc - it would be better to publish the jars to github
         jcenter()
         maven {
             url 'https://github.com/rosjava/rosjava_mvn_repo/raw/master/'
@@ -71,6 +72,10 @@ project('lego-ros-android') {
         compileSdkVersion 23
         buildToolsVersion "25.0.1"
 
+        lintOptions {
+            disable 'InvalidPackage', 'WrongConstant'
+        }
+
         /**
          * The defaultConfig {} block encapsulates default settings and entries for all
          * build variants, and can override some attributes in main/AndroidManifest.xml
@@ -89,10 +94,10 @@ project('lego-ros-android') {
             applicationId 'com.example.myapp'
 
             // Defines the minimum API level required to run the app.
-            minSdkVersion 15
+            minSdkVersion 19
 
             // Specifies the API level used to test the app.
-            targetSdkVersion 15
+            targetSdkVersion 19
 
             // Defines the version number of your app.
             versionCode 1
