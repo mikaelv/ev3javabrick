@@ -36,10 +36,10 @@ public class RosMasterService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        String logName = Settings.NODE_NAME.toString();
-        LogManager logManager = LogManager.getLogManager();
-        Logger logger = logManager.getLogger(logName);
-        logger.setLevel(Level.ALL);
+//        String logName = Settings.NODE_NAME.toString();
+//        LogManager logManager = LogManager.getLogManager();
+//        Logger logger = logManager.getLogger(logName);
+//        logger.setLevel(Level.ALL);
         if (Settings.needLocalMaster(this)) {
             Uri  uri = Uri.parse(Settings.masterUriAddress(RosMasterService.this));
             rosCore = RosCore.newPublic(uri.getHost(), uri.getPort());

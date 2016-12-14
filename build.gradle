@@ -58,7 +58,6 @@ project('lego-ros-android') {
     apply plugin: 'com.android.application'
 
     android {
-        useLibrary 'org.apache.http.legacy'
         /**
          * compileSdkVersion specifies the Android API level Gradle should use to
          * compile your app. This means your app can use the API features included in
