@@ -58,7 +58,7 @@ project('lego-ros-android') {
     apply plugin: 'com.android.application'
 
     android {
-        useLibrary 'org.apache.http.legacy' // in order to use org.apache.http
+        useLibrary 'org.apache.http.legacy'
         /**
          * compileSdkVersion specifies the Android API level Gradle should use to
          * compile your app. This means your app can use the API features included in
@@ -94,10 +94,10 @@ project('lego-ros-android') {
             applicationId 'com.example.myapp'
 
             // Defines the minimum API level required to run the app.
-            minSdkVersion 19
+            minSdkVersion 23
 
             // Specifies the API level used to test the app.
-            targetSdkVersion 19
+            targetSdkVersion 23
 
             // Defines the version number of your app.
             versionCode 1

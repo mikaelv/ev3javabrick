@@ -28,6 +28,7 @@
 -dontnote sun.misc.Unsafe
 
 -dontwarn com.google.common.cache.Striped64*
+-dontwarn org.apache.commons.logging.impl.**
 
 -dontwarn com.google.common.primitives.UnsignedBytes*
 -dontwarn com.google.common.reflect.Invokable*
